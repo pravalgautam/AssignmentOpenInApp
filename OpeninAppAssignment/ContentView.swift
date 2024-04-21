@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @StateObject private var dashViewModel = DashboardViewModel()
     @State  var selectedTab = 0
+    
     var body: some View {
         VStack {
             ZStack {
@@ -31,17 +33,12 @@ struct ContentView: View {
                 VStack(spacing: 0) {
                   Spacer()
                     TabBarView(selectedTab: $selectedTab)
-                 
                         .background(Color.white)
-             
                 
                 }.padding(.bottom,16)
-        
             }
         }
-   
         .ignoresSafeArea(.all)
-     
     }
 }
 
@@ -50,6 +47,7 @@ struct ContentView: View {
 }
 
 struct item:View {
+    
     var itemCardModel : ItemCardModel
     
     var body: some View {
@@ -76,6 +74,7 @@ struct item:View {
     }
 }
 struct CustomPicker: View {
+    
     @Binding var selectedOption: Int
     
     var body: some View {
@@ -90,7 +89,6 @@ struct CustomPicker: View {
                     .font(.system(size: 16))
                     .foregroundColor(selectedOption == 0 ? .white : .gray)
                     .background(selectedOption == 0 ? Color.blue : Color.bg)
-              
                     .cornerRadius(50)
             }
             
@@ -112,15 +110,11 @@ struct CustomPicker: View {
                 .stroke(Color.gray, lineWidth: 1)
                 .fill(.clear)
                 .frame(width: 36,height: 36)
-               
-             
                 .overlay(
                     Image("Generic")
                         .resizable()
                         .frame(width: 24,height: 24)
                 )
-          
-        
         }.padding(.horizontal,16)
     }
 }

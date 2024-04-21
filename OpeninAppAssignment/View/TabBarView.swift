@@ -4,9 +4,11 @@
 //
 //  Created by Praval Gautam on 15/04/24.
 //
+
 import SwiftUI
 
 struct TabBarView: View {
+    
     @Binding var selectedTab: Int
     let tabItemsLeft = ["Links", "Courses"]
     let leftImages = ["link","magazine"]
@@ -20,41 +22,36 @@ struct TabBarView: View {
                     .resizable()
                     .frame(width: 150, height: 25)
                     .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
-                
                 RectangleView()
                     .frame(height: 100)
                     .background(Color.white)
-               
                     .offset(y: -10)
                     .overlay(
-                   
+                        
                         HStack(spacing: 30) {
-                           
-                               
                             TabBarButton(imageName: leftImages[0], tabNumber: 0, titleName: tabItemsLeft[0], selectedTab: $selectedTab)
                                 .padding(.bottom,25)
                             TabBarButton(imageName: leftImages[1], tabNumber: 1, titleName: tabItemsLeft[1], selectedTab: $selectedTab)
                                 .padding(.bottom,25)
                             Button(action: {
-                       
+                                
                             }) {
                                 Circle()
                                     .fill(.blue)
                                     .frame(width: 60,height: 60)
-                             
+                                
                                     .overlay(
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                    .foregroundColor(.white)
-                                )
+                                        Image(systemName: "plus")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(.white)
+                                    )
                             }.offset(y:-31)
-                          
-                                TabBarButton(imageName: RightImages[0], tabNumber: 3, titleName:  tabItemsRight[0], selectedTab: $selectedTab)
-                                .padding(.bottom,25)
-                                TabBarButton(imageName: RightImages[1], tabNumber: 4, titleName:  tabItemsRight[1], selectedTab: $selectedTab)
-                                .padding(.bottom,25)
                             
+                            TabBarButton(imageName: RightImages[0], tabNumber: 3, titleName:  tabItemsRight[0], selectedTab: $selectedTab)
+                                .padding(.bottom,25)
+                            TabBarButton(imageName: RightImages[1], tabNumber: 4, titleName:  tabItemsRight[1], selectedTab: $selectedTab)
+                                .padding(.bottom,25)
                         }
                     )
             }
@@ -85,7 +82,7 @@ struct RectangleView: View {
 }
 
 struct TabBarButton: View {
-   
+    
     let imageName: String
     let tabNumber: Int
     let titleName : String
@@ -101,14 +98,11 @@ struct TabBarButton: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 20, height: 20)
                     .padding(8)
-                
             }
             Text(titleName)
                 .foregroundStyle(.black)
                 .font(.system(size: 11))
         }
-
-
     }
 }
 

@@ -24,7 +24,7 @@ struct SaleChartCard: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Sales Overview")
+                Text("Overview")
                     .foregroundStyle(.primary)
                     .font(.custom("Figtree-Regular", size: 14))
                 Spacer()

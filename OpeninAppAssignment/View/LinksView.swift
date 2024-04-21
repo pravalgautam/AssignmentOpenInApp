@@ -8,42 +8,43 @@
 import SwiftUI
 
 struct LinksView: View {
-    @StateObject private var dashViewModel = DashboardViewModel()
     
+    @StateObject private var dashViewModel = DashboardViewModel()
     @State private var selectedOption = 0
+    
     var body: some View {
         VStack{
             ScrollView(showsIndicators:false) {
-
-                    HStack {
-                        Text("Dashboard")
-                            .bold()
-                            .font(.system(size: 24))
-                            .foregroundStyle(.white)
-                        Spacer()
-                        RoundedRectangle(cornerRadius: 12.0)
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(.white)
-                            .opacity(0.2)
-                            .overlay {
-                                Image("wrench")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 26.67, height: 26.67)
-                            }
-                        
-                    }
-                    .padding(.top,40)
-                    .frame(height: 124)
-                    .padding(.horizontal, 16)
-                    .background(.tabBar)
+                
+                HStack {
+                    Text("Dashboard")
+                        .bold()
+                        .font(.system(size: 24))
+                        .foregroundStyle(.white)
+                    Spacer()
+                    RoundedRectangle(cornerRadius: 12.0)
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white)
+                        .opacity(0.2)
+                        .overlay {
+                            Image("wrench")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 26.67, height: 26.67)
+                        }
+                    
+                }
+                .padding(.top,48)
+                .frame(height: 124)
+                .padding(.horizontal, 16)
+                .background(.tabBar)
                 
                 ZStack{
                     Color.bg
-                    .cornerRadius(20)
-            
-                    VStack{
+                        .cornerRadius(20)
                     
+                    VStack{
+                        
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(getGreeting())
@@ -59,67 +60,67 @@ struct LinksView: View {
                             Spacer()
                         }
                         SaleChartCard()
-                                   .padding(.top,24)
-                                    HStack {
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(CardData, id: \.id) { i in
-                                                    item(itemCardModel: i)
-                                                }
-                                            }
-                                            .padding(.leading, 16)
-                        
-                                        }
+                            .padding(.top,24)
+                        HStack {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach(CardData, id: \.id) { i in
+                                        item(itemCardModel: i)
                                     }
-                                    .padding(.top, 20)
-                                   CustomPicker(selectedOption: $selectedOption)
-                                        .padding(.top, 40)
-                                    if selectedOption == 0 {
-                                        if let topLinks = dashViewModel.dashboardStats?.data.top_links {
-                                            ForEach(topLinks, id: \.url_id) { link in
-                                                LinkCard(topLinkData: link)
-                                                    .padding(.top,36)
-                                            }
-                                        }
-                                    } else {
-                                        if let recentLinks = dashViewModel.dashboardStats?.data.recent_links {
-                                            ForEach(recentLinks, id: \.url_id) { link in
-                                                LinkCard(topLinkData: link)
-                                                    .padding(.top,36)
-                                            }
-                                        }
-                                    }
+                                }
+                                .padding(.leading, 16)
+                                
+                            }
+                        }
+                        .padding(.top, 20)
+                        CustomPicker(selectedOption: $selectedOption)
+                            .padding(.top, 40)
+                        if selectedOption == 0 {
+                            if let topLinks = dashViewModel.dashboardStats?.data.top_links {
+                                ForEach(topLinks, id: \.url_id) { link in
+                                    LinkCard(topLinkData: link)
+                                        .padding(.top,36)
+                                }
+                            }
+                        } else {
+                            if let recentLinks = dashViewModel.dashboardStats?.data.recent_links {
+                                ForEach(recentLinks, id: \.url_id) { link in
+                                    LinkCard(topLinkData: link)
+                                        .padding(.top,36)
+                                }
+                            }
+                        }
                         
-                      
+                        
                         ButtonsView()
                         
                     }
                     
                     
                 }        .offset(y:-16)
-           
+                
                 
             }
-            }
-            .padding(.bottom, 60)
-            
         }
+        .padding(.bottom, 60)
+        
+    }
     
     func getGreeting() -> String {
-         let calendar = Calendar.current
-         let hour = calendar.component(.hour, from: Date())
-         switch hour {
-             case 0..<5:
-                 return "Good night"
-             case 5..<12:
-                 return "Good morning"
-             case 12..<17:
-                 return "Good afternoon"
-             default:
-                 return "Good evening"
-         }
-     }
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: Date())
+        switch hour {
+        case 0..<5:
+            return "Good night"
+        case 5..<12:
+            return "Good morning"
+        case 12..<17:
+            return "Good afternoon"
+        default:
+            return "Good evening"
+        }
     }
+}
 
 
 #Preview{
@@ -165,15 +166,15 @@ struct ButtonsView:View {
                         .foregroundColor(.black)
                     Spacer()
                 }.padding(.horizontal,12)
-                .frame(width: 357, height: 48)
+                    .frame(width: 357, height: 48)
                 
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        .fill(.talk)
-                        .opacity(0.12)
-                )
-                            }        .padding(.top,40)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .fill(.talk)
+                            .opacity(0.12)
+                    )
+            }        .padding(.top,40)
             Button(action: {
                 
             }) {
@@ -189,15 +190,15 @@ struct ButtonsView:View {
                         .foregroundColor(.black)
                     Spacer()
                 }.padding(.horizontal,12)
-                .frame(width: 357, height: 48)
+                    .frame(width: 357, height: 48)
                 
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                        .fill(.faq)
-                )
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.gray, lineWidth: 1)
+                            .fill(.faq)
+                    )
             }
             .padding(.top,16)
         }
-        }
     }
+}

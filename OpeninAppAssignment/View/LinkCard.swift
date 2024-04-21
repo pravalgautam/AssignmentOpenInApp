@@ -8,7 +8,7 @@ import SwiftUI
 struct LinkCard: View {
     var topLinkData: Links
     
-
+    
     func formattedDate() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -76,11 +76,10 @@ struct LinkCard: View {
                                         .padding(.trailing,30)
                                 }
                             })
-                    
                 }
             }
         }.padding(16)
-        .frame(height: 116)
+            .frame(height: 116)
         
     }
 }

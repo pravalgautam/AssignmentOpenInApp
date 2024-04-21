@@ -14,7 +14,7 @@ struct ItemCardModel{
     var heading : String
     var subHeading : String
     
-
+    
 }
 
 
